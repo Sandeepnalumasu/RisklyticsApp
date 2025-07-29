@@ -1,0 +1,5 @@
+location             = "canadacentral"
+resource_group_name  = "risklytics-rg"
+storage_account_name = "risklyticssa123"
+app_service_name     = "risklyticsapp123"
+insights_name        = "risklyticsinsights"

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Risklytics – Credit Risk Scoring</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap Dark Theme (Bootswatch Cyborg) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/cyborg/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #121212;
+    }
+    .container {
+      max-width: 500px;
+      margin-top: 60px;
+      padding: 30px;
+      border-radius: 10px;
+      background-color: #1e1e1e;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    }
+    .logo {
+      max-height: 80px;
+      margin-bottom: 20px;
+    }
+    .title {
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+    .form-label {
+      color: #cccccc;
+    }
+    .prediction {
+      margin-top: 25px;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+    .high-risk {
+      color: #ff4c4c;
+    }
+    .low-risk {
+      color: #4caf50;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container text-center">
+  <!-- Logo -->
+  <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Risklytics Logo" class="logo">
+
+  <!-- App Title -->
+  <h2 class="title">Risklytics – Credit Risk Scoring</h2>
+
+  <!-- Input Form -->
+  <form method="POST">
+    <div class="mb-3 text-start">
+      <label for="age" class="form-label">Age</label>
+      <input type="number" class="form-control" id="age" name="age" step="any" required>
+    </div>
+    <div class="mb-3 text-start">
+      <label for="income" class="form-label">Income</label>
+      <input type="number" class="form-control" id="income" name="income" step="any" required>
+    </div>
+    <div class="mb-3 text-start">
+      <label for="loan_amount" class="form-label">Loan Amount</label>
+      <input type="number" class="form-control" id="loan_amount" name="loan_amount" step="any" required>
+    </div>
+    <div class="mb-3 text-start">
+      <label for="credit_score" class="form-label">Credit Score</label>
+      <input type="number" class="form-control" id="credit_score" name="credit_score" step="any" required>
+    </div>
+
+    <div class="d-grid">
+      <button type="submit" class="btn btn-primary">Predict Risk</button>
+    </div>
+  </form>
+
+  <!-- Prediction Result -->
+  {% if prediction is not none %}
+    <div class="prediction {{ 'high-risk' if prediction == 1 else 'low-risk' }}">
+      Prediction: {{ 'High Risk' if prediction == 1 else 'Low Risk' }}
+    </div>
+  {% endif %}
+</div>
+
+</body>
+</html>
