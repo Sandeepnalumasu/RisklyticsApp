@@ -1,1 +1,1 @@
-# RisklyicsApp
+# RisklyticsApp
